@@ -32,6 +32,7 @@ kotlin {
 }
 
 fun KotlinJvmTarget.withJavaInOtherProject(otherProject: Project) {
+    otherProject.buildDir = project.buildDir.resolve(otherProject.name)
     otherProject.plugins.apply(JavaPlugin::class.java)
     val javaPluginConvention = otherProject.convention.getPlugin(JavaPluginConvention::class.java)
     val javaSourceSets = javaPluginConvention.sourceSets
